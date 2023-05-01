@@ -121,4 +121,14 @@ class MathUtilsTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    @Tag("Math")
+    /* This tag value can be used in the pom.xml -> surefire plugin configuration to run only specific test cases.
+     We can tag multiple test cases with same tag value and form a logical group. */
+    void testDivideForTag() {
+        int expected = 3;
+        int actual = mathUtils.divide(9, 3);
+        assertEquals(expected, actual);
+    }
 }
