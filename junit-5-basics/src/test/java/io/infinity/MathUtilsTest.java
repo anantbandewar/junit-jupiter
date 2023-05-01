@@ -1,6 +1,8 @@
 package io.infinity;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -60,5 +62,38 @@ class MathUtilsTest {
     @DisplayName("TDD method. Should not run")
     void testDisabled() {
         fail("This test should be disabled");
+    }
+
+    @Test
+    @EnabledOnOs(OS.LINUX)
+    @DisplayName("Only runs on Linux OS")
+    void testLinuxTest() {
+        fail("This test should not run on non linux OS");
+    }
+
+    @Test
+    @DisplayName("Multiply method")
+    void testMultiply() {
+        //assertEquals(4, mathUtils.multiply(2, 2), "Should return the right product");
+        assertAll(
+                () -> assertEquals(4, mathUtils.multiply(2, 2), "Should return the right product"),
+                () -> assertEquals(15, mathUtils.multiply(5, 3), "Should return the right product")
+        );
+    }
+
+    @Nested
+    @DisplayName("Add method")
+    class AddTests {
+        @Test
+        @DisplayName("When adding two +ve numbers")
+        void testAddPositive() {
+            assertEquals(2, mathUtils.add(1, 1), "Should return the right sum");
+        }
+
+        @Test
+        @DisplayName("When adding two -ve numbers")
+        void testAddNegative() {
+            assertEquals(-2, mathUtils.add(-1, -1), "Should return the right sum");
+        }
     }
 }
