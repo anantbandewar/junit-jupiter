@@ -93,7 +93,32 @@ class MathUtilsTest {
         @Test
         @DisplayName("When adding two -ve numbers")
         void testAddNegative() {
-            assertEquals(-2, mathUtils.add(-1, -1), "Should return the right sum");
+            int expected = -2;
+            int actual = mathUtils.add(-1, -1);
+
+            //Optimization: The message gets calculated/formed only in case of test case failure. We are using Supplier functional interface to write lambda here.
+            assertEquals(expected, actual, () -> "Should return sum: " + expected + " but returned: " + actual);
         }
+    }
+
+    @RepeatedTest(3)
+    @DisplayName("Repeated: Subtract method test")
+    void testSubtract() {
+        int expected = 0;
+        int actual = mathUtils.subtract(1, 1);
+
+        assertEquals(expected, actual);
+    }
+
+    @RepeatedTest(3)
+    @DisplayName("Repeated: Subtract method test with additional details")
+    void testSubtractWithAdditionalInfo(RepetitionInfo repetitionInfo) {
+        System.out.println("Total Repetition: " + repetitionInfo.getTotalRepetitions());
+        System.out.println("Current Repetition: " + repetitionInfo.getCurrentRepetition());
+
+        int expected = 0;
+        int actual = mathUtils.subtract(1, 1);
+
+        assertEquals(expected, actual);
     }
 }
