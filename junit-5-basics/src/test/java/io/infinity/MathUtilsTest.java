@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class MathUtilsTest {
 
     @Test
-    void add() {
+    void testAdd() {
         MathUtils mathUtils = new MathUtils();
 
         int expected = 2;
@@ -18,7 +18,7 @@ class MathUtilsTest {
     }
 
     @Test
-    void computeCircleArea() {
+    void testComputeCircleArea() {
         MathUtils mathUtils = new MathUtils();
 
         double radius = 10;
@@ -26,5 +26,11 @@ class MathUtilsTest {
         double actual = mathUtils.computeCircleArea(radius);
 
         assertEquals(expected, actual, "Should return right circle area");
+    }
+
+    @Test
+    void testDivide() {
+        MathUtils mathUtils = new MathUtils();
+        assertThrows(ArithmeticException.class, () -> mathUtils.divide(1, 0), "Divide by zero should throw ArithmeticException");
     }
 }
