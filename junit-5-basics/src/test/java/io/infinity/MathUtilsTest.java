@@ -17,4 +17,14 @@ class MathUtilsTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    void computeCircleArea() {
+        MathUtils mathUtils = new MathUtils();
+
+        double radius = 10;
+        double expected = 314.1592653589793;
+        double actual = mathUtils.computeCircleArea(radius);
+
+        assertEquals(expected, actual, "Should return right circle area");
+    }
 }
