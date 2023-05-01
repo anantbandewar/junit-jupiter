@@ -32,6 +32,7 @@ class MathUtilsTest {
     }
 
     @Test
+    @DisplayName("Testing add method")
     void testAdd() {
         int expected = 2;
         int actual = mathUtils.add(1, 1);
@@ -49,7 +50,15 @@ class MathUtilsTest {
     }
 
     @Test
+    @DisplayName("Testing Divide method for divide by zero")
     void testDivide() {
         assertThrows(ArithmeticException.class, () -> mathUtils.divide(1, 0), "Divide by zero should throw ArithmeticException");
+    }
+
+    @Test
+    @Disabled
+    @DisplayName("TDD method. Should not run")
+    void testDisabled() {
+        fail("This test should be disabled");
     }
 }
