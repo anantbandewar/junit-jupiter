@@ -16,6 +16,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class MathUtilsTest {
 
     MathUtils mathUtils;
+    TestInfo testInfo;
+    TestReporter testReporter;
 
     @BeforeAll
     // This needs to be static, because we won't be having an instance of this class created at this point.
@@ -24,8 +26,12 @@ class MathUtilsTest {
     }
 
     @BeforeEach
-    void init() {
+    void init(TestInfo testInfo, TestReporter testReporter) {
         mathUtils = new MathUtils();
+        this.testInfo = testInfo;
+        this.testReporter = testReporter;
+
+        testReporter.publishEntry("Running " + testInfo.getDisplayName() + " with Tags: " + testInfo.getTags());
     }
 
     @AfterEach
@@ -126,7 +132,10 @@ class MathUtilsTest {
     @Tag("Math")
     /* This tag value can be used in the pom.xml -> surefire plugin configuration to run only specific test cases.
      We can tag multiple test cases with same tag value and form a logical group. */
+    @DisplayName("Divide method")
     void testDivideForTag() {
+        System.out.println("Running " + testInfo.getDisplayName() + " with Tags: " + testInfo.getTags());
+
         int expected = 3;
         int actual = mathUtils.divide(9, 3);
         assertEquals(expected, actual);
